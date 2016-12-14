@@ -3,6 +3,6 @@ node {
 		checkout scm
 	}
 	stage('build') {
-		sh './client/gradlew -Dgradle.user.home=/root/.gradle -b client/build.gradle release'
+		sh './gradlew -Dgradle.user.home=/root/.gradle release'
 	}
 }

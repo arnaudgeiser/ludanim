@@ -3,6 +3,6 @@ node {
 		checkout scm
 	}
 	stage('build') {
-		sh "./client/gradlew -Dgradle.user.home=/root/.gradle -b client/build.gradle -PversionToDeploy=$versionToDeploy deploy"
+		sh "./gradlew -Dgradle.user.home=/root/.gradle -PversionToDeploy=$versionToDeploy deploy"
 	}
 }
