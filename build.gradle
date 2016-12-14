@@ -53,7 +53,7 @@ task deploy {
 				execute """cd /var/www/html && 
 					 mkdir -p ludanim/versions &&
 					 cd ludanim/versions &&
-					 wget http://archiva.ludine.ch/repository/internal/ch/waterbead/ludanim/${versionToDeploy}/ludanim-${versionToDeploy}.zip -O ${versionToDeploy}.zip &&
+					 wget http://archiva.ludine.ch/restServices/archivaServices/searchService/artifact?g=ch.heg&a=epicearc&v=${versionToDeploy}&p=zip -O ${versionToDeploy}.zip &&
 					 rm -R ${versionToDeploy}
 					 unzip ${versionToDeploy}.zip -d ${versionToDeploy} &&
 					 rm ${versionToDeploy}.zip
