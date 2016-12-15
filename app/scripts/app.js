@@ -1,6 +1,6 @@
 'use strict';
 
-var URL = "http://localhost:3000/";
+var URL = "http://46.101.214.30:3000/";
 
 angular.module('ludanim', ['ngRoute', 'ngResource','ngCookies', 'ui.bootstrap', 'ui-notification']).config(['$routeProvider', function ($routeProvider) {
   $routeProvider.when('/home', {
