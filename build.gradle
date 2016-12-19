@@ -57,7 +57,7 @@ task deploy {
 					 rm -R ${versionToDeploy}
 					 unzip ${versionToDeploy}.zip -d ${versionToDeploy} &&
 					 rm ${versionToDeploy}.zip
-					 ln -sf versions/${versionToDeploy} /var/www/html/ludanim/current"""
+					 ln -sfn versions/${versionToDeploy} /var/www/html/ludanim/current"""
 			}
 		}
 	}

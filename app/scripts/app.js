@@ -31,7 +31,7 @@ angular.module('ludanim', ['ngRoute', 'ngResource','ngCookies', 'ui.bootstrap', 
         if(rejection.status===401 || rejection.status===403) {
           $location.path('login');
         }
-        $injector.get('Notification').error(rejection.data);
+        $injector.get('Notification').error("Authentification échouée");
       }
       return $q.reject(rejection);
     }

@@ -18,14 +18,14 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "^1.5.7",
-    "angular-route": "^1.5.7",
+    "angular": "1.5.7",
+    "angular-route": "1.5.7",
     "bootstrap": "~3.3.6",
-    "angular-ui-notification": "~0.1.0",
-    "angular-resource": "^1.5.7",
+    "angular-ui-notification": "~0.2.0",
+    "angular-resource": "1.5.7",
     "angular-bootstrap": "~1.1.0",
     "font-awesome": "4.5.0",
-    "angular-cookies": "^1.5.7",
+    "angular-cookies": "1.5.7",
     "moment": "momentjs#^2.14.1"
   },
   "resolutions": {

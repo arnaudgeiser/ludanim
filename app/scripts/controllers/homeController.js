@@ -89,6 +89,11 @@ angular.module('ludanim').controller('HomeCtrl', ['$scope', '$http' ,'$resource'
 			$scope.day = null;
 		}
 
+		$scope.formattedDay = (event) => {
+			var day = moment(event.event_start_date).format('dddd');
+			return day.charAt(0).toUpperCase() + day.slice(1);
+		}
+
 		$scope.addReservation = (event) => {
 			var modalInstance = $uibModal.open({
 				templateUrl: 'addReservation.html',

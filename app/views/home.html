@@ -37,6 +37,12 @@
 	</div>
 </script>
 
+<style>
+.accordion-toggle {
+	width: 100%
+}
+</style>
+
 <script type="text/ng-template" id="addReservation.html">
 	<div class="modal-body">
 		<form name="addReservation">
@@ -86,24 +92,29 @@
     <uib-accordion close-others="false">
     <uib-accordion-group is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled" ng-repeat="event in filteredEvents | filter:searchEvent">
       <uib-accordion-heading>
+				<div style="width:70%;display:inline-block">
       	  {{event.event_name}}
-	      <span ng-switch="event.hasinscriptions">
-	      	<div ng-switch-when="true" style="float: right;">
-	      		<i ng-click="$event.stopPropagation();$event.preventDefault();print(event)" class="fa fa-print"></i>
-	    		<i ng-click="$event.stopPropagation();$event.preventDefault();sendEmail(event)" class="fa fa-envelope"></i>
-	    		<span ng-switch="numberOf(event)==event.ticket_spaces">
-	    			<span ng-switch-when="true">
-	    				COMPLET
-	    			</span>
-	    			<span ng-switch-default>
-	    				{{numberOf(event)}} / {{event.ticket_spaces}}
-	    			</span>
-	    		</span>
-	    	</div>
-	    	<div ng-switch-default style="float:right;">
-	    		{{numberOf(event)}} / {{event.ticket_spaces}}
-	    	</div>
-	      </span>
+				</div>
+					<div style="display:inline-block;">
+						{{formattedDay(event)}}
+					</div>
+		      <span ng-switch="event.hasinscriptions">
+		      	<div ng-switch-when="true" style="float: right;">
+		      		<i ng-click="$event.stopPropagation();$event.preventDefault();print(event)" class="fa fa-print"></i>
+		    		<i ng-click="$event.stopPropagation();$event.preventDefault();sendEmail(event)" class="fa fa-envelope"></i>
+		    		<span ng-switch="numberOf(event)==event.ticket_spaces">
+		    			<span ng-switch-when="true">
+		    				COMPLET
+		    			</span>
+		    			<span ng-switch-default>
+		    				{{numberOf(event)}} / {{event.ticket_spaces}}
+		    			</span>
+		    		</span>
+		    	</div>
+		    	<div ng-switch-default style="float:right;width:80px;display:inline-block;text-align:right">
+		    		{{numberOf(event)}} / {{event.ticket_spaces}}
+		    	</div>
+		      </span>
       </uib-accordion-heading>
       	<div style="border:1px solid grey;margin-top:4px;margin-bottom:4px;" ng-repeat="reservation in event.reservations">
 						<div ng-click="deleteReservation(event,reservation)" class="fa fa-trash" style="cursor:pointer;"></div>

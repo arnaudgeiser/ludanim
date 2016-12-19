@@ -1,11 +1,10 @@
 'use strict';
 
-angular.module('ludanim').controller('LoginCtrl', ["$scope","$cookies", "$http","$rootScope","festivalService","Notification",
-function ($scope, $cookies, $http, $rootScope,festivalService,Notification) {
+angular.module('ludanim').controller('LoginCtrl', ["$scope","$cookies","$location", "$http","$rootScope","festivalService","Notification",
+function ($scope, $cookies, $location, $http, $rootScope,festivalService,Notification) {
 	function changeFestival(festival) {
 		$rootScope.festival = festival;
 		$cookies.putObject('festival', festival);
-		console.log(festival);
 	}
 
 	festivalService.findFestivals().then((data) => {
@@ -22,12 +21,11 @@ function ($scope, $cookies, $http, $rootScope,festivalService,Notification) {
 		$http.defaults.headers.common['Authorization'] = token;
 
 		$http.post('login').then((data) => {
-			if(data.data) {
-				window.location = '#/home';
+			if(data) {
+				$location.path('home');
 			} else {
 				Notification.error("Authentification échouée");
 			}
-		});
-		return false;
+		})
 	};
 }]);
