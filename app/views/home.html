@@ -13,6 +13,7 @@
 		  	<textarea id="content" ng-model="notification.message" class="form-control" rows="2" placeholder="Contenu" ng-required="true"></textarea>
 		  </div>
 		  <div style="text-align:right;">
+				<button ng-click="close()" type="button" class="btn btn-warning">Annuler</button>
 		  	<button type="submit" class="btn btn-danger">Envoyer</button>
 		  </div>
 		</form>
@@ -82,6 +83,9 @@
 	<button ng-click="filterFriday()" ng-class="day === 5 ? 'btn btn-info' : 'btn'">Vendredi</button>
 	<button ng-click="filterSaturday()" ng-class="day === 6 ? 'btn btn-info' : 'btn'">Samedi</button>
 	<button ng-click="filterSunday()" ng-class="day === 0 ? 'btn btn-info' : 'btn'">Dimanche</button>
+</div>
+<div style="text-align:center;">
+	<button ng-click="refresh()" class="btn">Rafraîchir</button>
 </div>
 <div>
    	<div class="input-group" style="margin-bottom:24px;">

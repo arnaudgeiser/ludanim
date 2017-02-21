@@ -4,7 +4,7 @@ angular.module('ludanim').controller('HomeCtrl', ['$scope', '$http' ,'$resource'
 		$scope.events = [];
 		$scope.day = null;
 
-		function idFestival() {
+		let idFestival =() => {
 			var festival = $rootScope.festival;
 			if(festival) {
 				return festival.id;
@@ -13,10 +13,16 @@ angular.module('ludanim').controller('HomeCtrl', ['$scope', '$http' ,'$resource'
 			}
 		}
 
-		festivalService.findEvents(idFestival()).then((data) => {
-			$scope.events = data;
-			$scope.filteredEvents = data;
-		});
+		let find = () => {
+			festivalService.findEvents(idFestival()).then((data) => {
+				$scope.events = data;
+				$scope.filteredEvents = data;
+			});
+		}
+
+		$scope.refresh = () => {
+			find();
+		}
 
 		$scope.numberOf = (event) => event.reservations.reduce((acc, r) => acc+r.attendees.length, 0);
 
@@ -29,7 +35,6 @@ angular.module('ludanim').controller('HomeCtrl', ['$scope', '$http' ,'$resource'
 				});
 			}
 
-			console.log(reservation);
 			if(reservation.username) {
 				$uibModal.open({
 					templateUrl: 'removeReservation.html',
@@ -122,6 +127,8 @@ angular.module('ludanim').controller('HomeCtrl', ['$scope', '$http' ,'$resource'
 		}
 
 		$scope.print = (event) => eventsService.printProgramme(event);
+
+		find();
 }]).controller('SendEmailCtrl', ['$scope', 'eventsService', 'ev', '$uibModalInstance', 'Notification', function ($scope, eventsService, event, $uibModalInstance, Notification) {
 	$scope.submit = () => {
 		eventsService.send(event, $scope.email).then(() => {
@@ -137,11 +144,9 @@ angular.module('ludanim').controller('HomeCtrl', ['$scope', '$http' ,'$resource'
 			event_id : ev.id
 		}
 		eventsService.addReservation(ev, reservationAttempt).then((event) => {
-			console.log(event);
 			$uibModalInstance.close(event);
 			Notification.success('Le joueur ' + reservation.name + ' est inscrit à "' + event.event_name + '"');
 		}, (e) => {
-			console.log(e);
 			Notification.error("L'inscription n'a pas pu être effectué");
 		});
 	};
