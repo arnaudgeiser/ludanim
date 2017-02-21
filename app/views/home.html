@@ -20,6 +20,39 @@
 	</div>
 </script>
 
+<script type="text/ng-template" id="partiesSpontanees.html">
+	<div class="danger modal-header">
+		Parties spontanées
+	</div>
+	<div class="modal-body">
+		<div ng-repeat="p in parties" style="border: 1px solid grey; margin-bottom:12px;">
+			<div class="row">
+				<div class="col-sm-6">
+					Nom du jeu
+				</div>
+				<div class="col-sm-6">
+					{{p.name}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					Joueurs
+				</div>
+				<div class="col-sm-6">
+					{{p.players}}/{{p.nb_players}}
+				</div>
+				<div class="col-sm-6">
+					Lieu
+				</div>
+				<div class="col-sm-6">
+					{{p.location}}
+				</div>
+			</div>
+			<div>
+		</div>
+	</div>
+</script>
+
 <script type="text/ng-template" id="sendEmailContent.html">
 	<div class="modal-body">
 		<form>
@@ -73,6 +106,7 @@
 
 <div style="position:absolute;right:120px">
 	<button ng-click="sendNotification()" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> NOTIFICATION</button>
+	<button ng-click="openPartiesSpontanees()" class="btn btn-primary btn-block">Parties spontanées</button>
 </div>
 <div style="text-align:center;margin-bottom:24px;">
 	<button ng-click="printProgramme()" class="btn btn-primary">Programme complet</button>
@@ -84,7 +118,7 @@
 	<button ng-click="filterSaturday()" ng-class="day === 6 ? 'btn btn-info' : 'btn'">Samedi</button>
 	<button ng-click="filterSunday()" ng-class="day === 0 ? 'btn btn-info' : 'btn'">Dimanche</button>
 </div>
-<div style="text-align:center;">
+<div style="float:right;">
 	<button ng-click="refresh()" class="btn">Rafraîchir</button>
 </div>
 <div>

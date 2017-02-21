@@ -60,13 +60,20 @@ angular.module('ludanim').controller('HomeCtrl', ['$scope', '$http' ,'$resource'
 		};
 
 		$scope.sendNotification = () => {
-			var modalInstance = $uibModal.open({
+			$uibModal.open({
 				templateUrl: 'sendNotification.html',
 				controller: 'SendNotificationCtrl'
 			}).result.then((notification) => {
 				festivalService.sendNotification(notification).then(() => {
 					Notification.success("Votre notification a bien été envoyée !");
 				});
+			});
+		}
+
+		$scope.openPartiesSpontanees = () => {
+			$uibModal.open({
+				templateUrl: 'partiesSpontanees.html',
+				controller: 'PartiesSpontaneesCtrl'
 			});
 		}
 
@@ -165,4 +172,8 @@ angular.module('ludanim').controller('HomeCtrl', ['$scope', '$http' ,'$resource'
 	$scope.close = () => {
 		$uibModalInstance.dismiss();
 	}
+}]).controller('PartiesSpontaneesCtrl', ['$scope','$uibModalInstance','festivalService', function($scope, $uibModalInstance, festivalService) {
+	festivalService.findPartiesSpontanees().then((parties) => {
+		$scope.parties = parties;
+	});
 }]);
