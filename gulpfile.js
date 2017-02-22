@@ -39,7 +39,9 @@ gulp.task("views", function() {
 });
 
 gulp.task("fonts", function() {
-	return gulp.src('./bower_components/font-awesome/fonts/*')
+	gulp.src('./bower_components/font-awesome/fonts/*')
+		.pipe(gulp.dest(DIST_DIR+'/fonts'));
+	return gulp.src('./bower_components/bootstrap/fonts/*')
 		.pipe(gulp.dest(DIST_DIR+'/fonts'));
 });
 
