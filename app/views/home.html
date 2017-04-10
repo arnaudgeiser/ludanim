@@ -53,6 +53,26 @@
 	</div>
 </script>
 
+<script type="text/ng-template" id="paiementsEnAttente.html">
+	<div class="danger modal-header">
+		Paiements en attente
+	</div>
+	<div class="modal-body">
+		<div ng-repeat="(key,value) in awaitingPayments" style="border: 1px solid grey; margin-bottom:12px;">
+			<div class="row">
+				<div class="col-sm-6">
+					{{key}}
+				</div>
+			</div>
+			<div class="row" ng-repeat="r in value">
+				<div class="col-sm-6">
+				{{r.places}}
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+
 <script type="text/ng-template" id="sendEmailContent.html">
 	<div class="modal-body">
 		<form>
@@ -107,6 +127,7 @@
 <div style="position:absolute;right:120px">
 	<button ng-click="sendNotification()" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> NOTIFICATION</button>
 	<button ng-click="openPartiesSpontanees()" class="btn btn-primary btn-block">Parties spontanées</button>
+	<button ng-click="openPaiementsEnAttente()" class="btn btn-primary btn-block">{{numberOfAwaitingPayments(awaitingPayments)}}</button>
 </div>
 <div style="text-align:center;margin-bottom:24px;">
 	<button ng-click="printProgramme()" class="btn btn-primary">Programme complet</button>

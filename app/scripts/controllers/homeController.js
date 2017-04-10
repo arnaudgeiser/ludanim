@@ -18,6 +18,16 @@ angular.module('ludanim').controller('HomeCtrl', ['$scope', '$http' ,'$resource'
 				$scope.events = data;
 				$scope.filteredEvents = data;
 			});
+			festivalService.findAwaitingPayments(idFestival()).then((data) => {
+				$scope.awaitingPayments = data;
+			});
+		}
+
+		$scope.numberOfAwaitingPayments = (awaitingPayments) => {
+			if(!awaitingPayments) {
+				return 0;
+			}
+			return Object.values(awaitingPayments).reduce((acc,ap) => acc+ap.length,0);
 		}
 
 		$scope.refresh = () => {
@@ -74,6 +84,18 @@ angular.module('ludanim').controller('HomeCtrl', ['$scope', '$http' ,'$resource'
 			$uibModal.open({
 				templateUrl: 'partiesSpontanees.html',
 				controller: 'PartiesSpontaneesCtrl'
+			});
+		}
+
+		$scope.openPaiementsEnAttente = () => {
+			$uibModal.open({
+				templateUrl: 'paiementsEnAttente.html',
+				controller: 'PaiementsEnAttenteCtrl',
+				resolve: {
+					awaitingPayments: function awaitingPayments() {
+						return $scope.awaitingPayments;
+					}
+				}
 			});
 		}
 
@@ -176,4 +198,6 @@ angular.module('ludanim').controller('HomeCtrl', ['$scope', '$http' ,'$resource'
 	festivalService.findPartiesSpontanees().then((parties) => {
 		$scope.parties = parties;
 	});
+}]).controller('PaiementsEnAttenteCtrl', ['$scope','$uibModalInstance','awaitingPayments', function($scope, $uibModalInstance, awaitingPayments) {
+	$scope.awaitingPayments = awaitingPayments;
 }]);

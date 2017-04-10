@@ -12,6 +12,7 @@ angular.module('ludanim').factory('festivalService', ['$http','$location', funct
 			}
 			window.open(`${URL}festivals/${idFestival}/byday/${dayToPrint}/print`);
 		},
-		sendNotification : (notification) => $http.post("notifications/send", notification)
+		sendNotification : (notification) => $http.post("notifications/send", notification),
+		findAwaitingPayments: (idFestival) => $http.get(`festivals/${idFestival}/reservations/awaitingpayment`).then((response) => response.data)
 	}
 }]);
